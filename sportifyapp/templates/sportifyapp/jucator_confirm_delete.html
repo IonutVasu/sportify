@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Elimina jucator</h1>
+
+<p>Sigur elimini jucatorul {{ jucator }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Da, afara cu el.">
+</form>
+
+{% endblock %}
