@@ -22,6 +22,7 @@ class SportView(View):
         context = {'teams_list': teams_list, 'form': form, 'id': kwargs['sport_id']}
         return render(request, 'sport.html', context)
 
+
     def post(self, request, *args, **kwargs):
         form = TeamForm(request.POST)
         if form.is_valid():
@@ -62,3 +63,38 @@ class TeamView(View):
             meci.echipa2 = form.cleaned_data['echipa'] 
             meci.save()
             return HttpResponseRedirect(str(kwargs['team_id']))
+
+
+#PARTEA LUI ARITON COSMIN
+
+
+class HomeView(View):
+    def get(self, request):
+        sports_list = Sport.objects.all()
+        jucatori = Jucator.objects.all()
+        context = {
+            'sports_list': sports_list,
+            'jucatori': jucatori
+        }
+
+        return render(request, 'home.html', context)
+
+
+
+class JucatorCreate(CreateView):
+    model = Jucator
+    fields = ['prenume', 'nume', 'varsta']
+    success_url = reverse_lazy('home')
+
+
+class JucatorUpdate(UpdateView):
+    model = Jucator
+    fields = ['echipa']
+    success_url = reverse_lazy('home')
+
+class JucatorDelete(DeleteView):
+    model = Jucator
+    success_url = reverse_lazy('home')
+
+
+#PARTEA LUI ARITON COSMIN
