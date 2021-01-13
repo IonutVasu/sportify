@@ -97,4 +97,4 @@ class JucatorDelete(DeleteView):
     success_url = reverse_lazy('home')
 
 
-#PARTEA LUI ARITON COSMIN
+#SFARSIT PARTEA LUI ARITON COSMIN
